@@ -1,59 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{Title}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}</title>
-  {block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
-  <link rel="apple-touch-icon" href="{PortraitURL-128}">
-  <link rel="shortcut icon" href="{Favicon}">
-  <link rel="canonical" href="{block:IndexPage}{BlogURL}{/block:IndexPage}{block:PermalinkPage}{Permalink}{/block:PermalinkPage}">
-  <link rel="alternate" type="application/rss+xml" href="{RSS}">
-  {block:Hidden}
-    <!--
-
-      Custom theme options in the 'Hidden' block will not show when viewing the source code.
-      https://www.tumblr.com/docs/en/custom_themes#theme-options
-
-     <meta name="text:Twitter Username" content=""/>
-
-     -->
-  {/block:Hidden}
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" type="text/css" media="all">
-  <style type="text/css">
-    /*Tumblr Global Appearance */
-    body {background:{BackgroundColor};}
-    h1 > a {color:{TitleColor};}
-    a {color:{AccentColor}}
-    {CustomCSS}
-  </style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{Title}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}</title>
+	{block:Description}<meta name="description" content="{MetaDescription}">{/block:Description}
+	<link rel="apple-touch-icon" href="{PortraitURL-128}">
+	<link rel="shortcut icon" href="{Favicon}">
+	<link rel="canonical" href="{block:IndexPage}{BlogURL}{/block:IndexPage}{block:PermalinkPage}{Permalink}{/block:PermalinkPage}">
+	<link rel="alternate" type="application/rss+xml" href="{RSS}">
+	<script src="//use.typekit.net/adl3nfq.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" type="text/css" media="all">
+	<style type="text/css">
+		/*Tumblr Global Appearance */
+		body {
+			background: #fefefe;
+			font-family:'Museo Slab', 'museo-slab', sans-serif;
+		}
+		h1 > a {color:{TitleColor};}
+		a {color:{AccentColor}}
+		h1,h2,h3,h4,h5,h6 {
+			font-family: 'Effra', sans-serif;
+		}
+		{CustomCSS}
+	</style>
 </head>
 <body>
 
-  <header role="banner" class="header">
+	<header role="banner" class="header">
+		{block:ShowTitle}<h1 id="logo"><a href="/">{Title}</a></h1>{/block:ShowTitle}
+		{block:ShowDescription}{block:Description}<div class="description">{Description}</div>{/block:Description}{/block:ShowDescription}
+		{block:ShowHeaderImage}<img src="http://www.nyentek.com/img/hero.jpg">{/block:ShowHeaderImage}
+		{block:ShowAvatar}<img src="{PortraitURL-128}">{/block:ShowAvatar}
 
-    {block:ShowTitle}<h1 id="logo"><a href="/">{Title}</a></h1>{/block:ShowTitle}
-    {block:ShowDescription}{block:Description}<div class="description">{Description}</div>{/block:Description}{/block:ShowDescription}
-    {block:ShowHeaderImage}<img src="{HeaderImage}">{/block:ShowHeaderImage}
-    {block:ShowAvatar}<img src="{PortraitURL-128}">{/block:ShowAvatar}
+		<nav role="navigation">
+			<ul>
+				{block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
+				<li><a href="/archive">{lang:Archive}</a></li>
+				{block:AskEnabled}<li><a href="/ask">{AskLabel}</a></li>{/block:AskEnabled}
+			</ul>
+		</nav>
 
-    <nav role="navigation">
-      <ul>
-        {block:HasPages}{block:Pages}<li><a href="{URL}">{Label}</a></li>{/block:Pages}{/block:HasPages}
-        <li><a href="/archive">{lang:Archive}</a></li>
-        {block:AskEnabled}<li><a href="/ask">{AskLabel}</a></li>{/block:AskEnabled}
-      </ul>
-    </nav>
+		<form id="search" action="/search" method="get">
+			<input role="textbox" type="search" placeholder="{lang:Search}" name="q" value="{SearchQuery}">
+			<input role="button" type="submit" value="{lang:Search}">
+		</form>
+	</header>
 
-    <form id="search" action="/search" method="get">
-      <input role="textbox" type="search" placeholder="{lang:Search}" name="q" value="{SearchQuery}">
-      <input role="button" type="submit" value="{lang:Search}">
-    </form>
-
-  </header>
-
-  <main role="main" class="content">
+	<main role="main" class="content">
 
     {block:SearchPage}
     <div class="result">
@@ -194,9 +190,9 @@
       {block:NextPage}<a class="next" href="{NextPage}">{lang:Next}</a>{/block:NextPage}
     </div>
     {/block:Pagination}
-  </main>
-  <footer class="footer">
-    <small>{block:ShowTitle}{Title} {/block:ShowTitle}&copy; {CopyrightYears}</small>
-  </footer>
+	</main>
+	<footer class="footer">
+		<small>{block:ShowTitle}{Title} {/block:ShowTitle}&copy; {CopyrightYears}</small>
+	</footer>
 </body>
 </html>
